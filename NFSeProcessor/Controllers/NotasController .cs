@@ -26,7 +26,7 @@ namespace NFSeProcessor.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NotaFiscal>>> GetNotas()
         {
-            var notas = await _context.NotasFiscais
+            var notas = await _context.NotaFiscal
                 .OrderByDescending(n => n.DataEmissao)
                 .ToListAsync();
 
@@ -36,7 +36,7 @@ namespace NFSeProcessor.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<NotaFiscal>> GetNota(int id)
         {
-            var nota = await _context.NotasFiscais.FindAsync(id);
+            var nota = await _context.NotaFiscal.FindAsync(id);
 
             if (nota == null)
                 return NotFound(new { message = "Nota fiscal não encontrada" });
@@ -61,7 +61,7 @@ namespace NFSeProcessor.Controllers
                     });
                 }
 
-                var existe = await _context.NotasFiscais
+                var existe = await _context.NotaFiscal
                     .AnyAsync(n => n.Numero == notaDto.Numero);
 
                 if (existe)
@@ -83,7 +83,7 @@ namespace NFSeProcessor.Controllers
                     DataProcessamento = DateTime.Now
                 };
 
-                _context.NotasFiscais.Add(notaFiscal);
+                _context.NotaFiscal.Add(notaFiscal);
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction(nameof(GetNota),
@@ -123,7 +123,7 @@ namespace NFSeProcessor.Controllers
                         continue;
                     }
 
-                    var existe = await _context.NotasFiscais
+                    var existe = await _context.NotaFiscal
                         .AnyAsync(n => n.Numero == notaDto.Numero);
 
                     if (existe)
@@ -147,7 +147,7 @@ namespace NFSeProcessor.Controllers
                         ValorTotal = notaDto.ValorTotal
                     };
 
-                    _context.NotasFiscais.Add(notaFiscal);
+                    _context.NotaFiscal.Add(notaFiscal);
                     await _context.SaveChangesAsync();
 
                     resultados.Add(new

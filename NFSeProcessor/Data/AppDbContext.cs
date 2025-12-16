@@ -7,7 +7,7 @@ namespace NFSeProcessor.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<NotaFiscal> NotasFiscais { get; set; }
+        public DbSet<NotaFiscal> NotaFiscal { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
