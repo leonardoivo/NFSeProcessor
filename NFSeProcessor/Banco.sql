@@ -1,0 +1,17 @@
+CREATE DATABASE NotasFiscais;
+GO
+
+USE NotasFiscais;
+GO
+
+CREATE TABLE NotaFiscal (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Numero NVARCHAR(20) NOT NULL UNIQUE,
+    CNPJPrestador NVARCHAR(14) NOT NULL,
+    CNPJTomador NVARCHAR(14) NOT NULL,
+    DataEmissao DATETIME2 NOT NULL,
+    DescricaoServico NVARCHAR(500) NOT NULL,
+    ValorTotal DECIMAL(18,2) NOT NULL,
+    DataProcessamento DATETIME2 NOT NULL DEFAULT GETDATE(),
+    
+);
