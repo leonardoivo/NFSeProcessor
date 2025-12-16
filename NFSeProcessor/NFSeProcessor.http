@@ -1,0 +1,6 @@
+@NFSeProcessor_HostAddress = http://localhost:5168
+
+GET {{NFSeProcessor_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
